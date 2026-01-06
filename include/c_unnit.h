@@ -6,33 +6,38 @@
 #define ADD_TEST(list, func) append_test(list, func, #func)
 
 #define ASSERT_TRUE(boolean)\
-if (!(boolean)) {\
-    printf("expected [%s] to be [TRUE] but was [FALSE]\n", #boolean);\
-    return -1;\
+if (!(boolean)) { \
+    printf("[ASSERT_TRUE] expected {%s} to be TRUE but was FALSE (%s:%d)\n", \
+           #boolean, __FILE__, __LINE__); \
+    return -1; \
 }
 
 #define ASSERT_FALSE(boolean)\
-if(boolean) {\
-    printf("expected [%s] to be [FALSE] but was [TRUE]\n", #boolean);\
-    return -1;\
+if (boolean) { \
+    printf("[ASSERT_FALSE] expected {%s} to be FALSE but was TRUE (%s:%d)\n", \
+           #boolean, __FILE__, __LINE__); \
+    return -1; \
 }
 
 #define ASSERT_NULL(ptr)\
-if ((ptr) != NULL) {\
-    printf("expected [%s] to be [NULL] but was [%p]\n", #ptr, ptr);\
-    return -1;\
+if ((ptr) != NULL) { \
+    printf("[ASSERT_NULL] expected {%s} to be NULL but was %p (%s:%d)\n", \
+           #ptr, (void*)(ptr), __FILE__, __LINE__); \
+    return -1; \
 }
 
 #define ASSERT_NOT_NULL(ptr)\
-if ((ptr) == NULL) {\
-    printf("expected [%s] to not be [NULL] but was\n", #ptr);\
-    return -1;\
+if ((ptr) == NULL) { \
+    printf("[ASSERT_NOT_NULL] expected {%s} to be NOT NULL but was NULL (%s:%d)\n", \
+           #ptr, __FILE__, __LINE__); \
+    return -1; \
 }
 
 #define ASSERT_EQUALS(actual, expected)\
-if ((actual) != (expected)) {\
-    printf("expected [%s] to be equals to [%s] but was not\n", #actual, #expected);\
-    return -1;\
+if ((actual) != (expected)) { \
+    printf("[ASSERT_EQUALS] expected {%s} == {%s} but it was not (%s:%d)\n", \
+           #actual, #expected, __FILE__, __LINE__); \
+    return -1; \
 }
 
 typedef void*(_beforeEach()); // return the struct of params as void*
