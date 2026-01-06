@@ -29,7 +29,11 @@ if ((ptr) == NULL) {\
     return -1;\
 }
 
-#define ASSERT_EQUALS(a, b) if ((a) != (b)) {return -1;}
+#define ASSERT_EQUALS(actual, expected)\
+if ((actual) != (expected)) {\
+    printf("expected [%s] to be equals to [%s] but was not\n", #actual, #expected);\
+    return -1;\
+}
 
 typedef void*(_beforeEach()); // return the struct of params as void*
 typedef int(testFunction(void *params)); // params are given by _beforeEach, return 0 == success; other == fail
