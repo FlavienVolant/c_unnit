@@ -9,11 +9,24 @@ int assert_true_success_test(void *_params) {
 
 int assert_true_fail_test(void *_params) {
 
-    ASSERT_TRUE(5 != 2 + 3);
+    ASSERT_TRUE(5 == 3 + 3);
 
     return 0;
 }
 
+int assert_false_succes_test(void *_params) {
+    
+    ASSERT_FALSE(5 == 3 + 3);
+
+    return 0;
+}
+
+int assert_false_fail_test(void *_params) {
+
+    ASSERT_FALSE(5 == 2 + 3);
+
+    return 0;
+}
 
 int main() {
 
@@ -21,6 +34,8 @@ int main() {
 
     ADD_TEST(tests, assert_true_success_test);
     ADD_TEST(tests, assert_true_fail_test);
+    ADD_TEST(tests, assert_false_succes_test);
+    ADD_TEST(tests, assert_false_fail_test);
 
     run_tests(tests, 0, 0);
 

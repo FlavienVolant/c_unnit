@@ -5,7 +5,18 @@
 
 #define ADD_TEST(list, func) append_test(list, func, #func)
 
-#define ASSERT_TRUE(boolean) if (!(boolean)) {printf("expected [%s] to be TRUE but was FALSE\n", #boolean); return -1;}
+#define ASSERT_TRUE(boolean)\
+if (!(boolean)) {\
+    printf("expected [%s] to be TRUE but was FALSE\n", #boolean);\
+    return -1;\
+}
+
+#define ASSERT_FALSE(boolean)\
+if(boolean) {\
+    printf("expected [%s] to be FALSE but was TRUE\n", #boolean);\
+    return -1;\
+}
+
 #define ASSERT_NULL(ptr) if ((ptr) != NULL) {return -1;}
 #define ASSERT_NOT_NULL(ptr) if ((ptr) == NULL) {return -1;}
 #define ASSERT_EQUALS(a, b) if ((a) != (b)) {return -1;}
