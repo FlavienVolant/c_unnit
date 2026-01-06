@@ -7,18 +7,28 @@
 
 #define ASSERT_TRUE(boolean)\
 if (!(boolean)) {\
-    printf("expected [%s] to be TRUE but was FALSE\n", #boolean);\
+    printf("expected [%s] to be [TRUE] but was [FALSE]\n", #boolean);\
     return -1;\
 }
 
 #define ASSERT_FALSE(boolean)\
 if(boolean) {\
-    printf("expected [%s] to be FALSE but was TRUE\n", #boolean);\
+    printf("expected [%s] to be [FALSE] but was [TRUE]\n", #boolean);\
     return -1;\
 }
 
-#define ASSERT_NULL(ptr) if ((ptr) != NULL) {return -1;}
-#define ASSERT_NOT_NULL(ptr) if ((ptr) == NULL) {return -1;}
+#define ASSERT_NULL(ptr)\
+if ((ptr) != NULL) {\
+    printf("expected [%s] to be [NULL] but was [%p]\n", #ptr, ptr);\
+    return -1;\
+}
+
+#define ASSERT_NOT_NULL(ptr)\
+if ((ptr) == NULL) {\
+    printf("expected [%s] to not be [NULL] but was\n", #ptr);\
+    return -1;\
+}
+
 #define ASSERT_EQUALS(a, b) if ((a) != (b)) {return -1;}
 
 typedef void*(_beforeEach()); // return the struct of params as void*
