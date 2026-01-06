@@ -45,11 +45,13 @@ void append_test(struct TestList *list, testFunction f, char *testName){
 
 int run(testFunction f, _beforeEach before, _afterEach after)
 {
-    void *params = before();
+    void *params = (before != NULL)? before():NULL;
 
     int result = f(params);
 
-    after(params);
+    if (after) {
+        after(params);
+    }
 
     return result;
 }
