@@ -1,0 +1,30 @@
+#include "c_unnit.h"
+
+int assert_true_success_test(void *_params) {
+
+    ASSERT_TRUE(5 == 2 + 3);
+
+    return 0;
+}
+
+int assert_true_fail_test(void *_params) {
+
+    ASSERT_TRUE(5 != 2 + 3);
+
+    return 0;
+}
+
+
+int main() {
+
+    struct TestList* tests = create_test_list();
+
+    ADD_TEST(tests, assert_true_success_test);
+    ADD_TEST(tests, assert_true_fail_test);
+
+    run_tests(tests, 0, 0);
+
+    free_test_list(tests);
+
+    return 0;
+}
