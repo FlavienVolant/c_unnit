@@ -1,4 +1,4 @@
-#include "stdio.h"
+#include <stdio.h>
 
 #ifndef C_UNNIT_H
 #define C_UNNIT_H
@@ -40,9 +40,9 @@ if ((actual) != (expected)) { \
     return -1; \
 }
 
-typedef void*(_beforeEach()); // return the struct of params as void*
-typedef int(testFunction(void *params)); // params are given by _beforeEach, return 0 == success; other == fail
-typedef void(_afterEach(void *params)); // used to free the params allocated in _beforeEach
+typedef void* _beforeEach(); // return the struct of params as void*
+typedef int testFunction(void *params); // params are given by _beforeEach, return 0 == success; other == fail
+typedef void _afterEach(void *params); // used to free the params allocated in _beforeEach
 
 struct TestList {
     struct TestNode *head;

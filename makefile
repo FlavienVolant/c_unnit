@@ -3,14 +3,18 @@ CFLAGS = -Iinclude -Wextra
 LDFLAGS = -lm
 OUT = out
 C_UNNIT = src/c_unnit.c include/c_unnit.h
+C_UNNIT_PPT = src/c_unnit.c include/c_unnit.h src/c_unnit_ppt.c include/c_unnit_ppt.h
 
-exemples: $(OUT)/example_01 $(OUT)/example_02
+exemples: $(OUT)/example_01 $(OUT)/example_02 $(OUT)/example_ppt
 
 $(OUT)/example_01: examples/example_01.c $(C_UNNIT) | $(OUT)
 	$(CC) $(CFLAGS) -o $@ examples/example_01.c src/c_unnit.c $(LDFLAGS)
 
 $(OUT)/example_02: examples/example_02.c $(C_UNNIT) | $(OUT)
 	$(CC) $(CFLAGS) -o $@ examples/example_02.c src/c_unnit.c $(LDFLAGS)
+
+$(OUT)/example_ppt: examples/example_ppt.c $(C_UNNIT_PPT) | $(OUT)
+	$(CC) $(CFLAGS) -o $@ examples/example_ppt.c src/c_unnit.c src/c_unnit_ppt.c $(LDFLAGS)
 
 $(OUT):
 	mkdir -p $(OUT)
