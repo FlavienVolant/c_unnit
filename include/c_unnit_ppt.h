@@ -3,8 +3,16 @@
 #ifndef C_UNNIT_PPT_H
 #define C_UNNIT_PPT_H
 
-typedef int generator();
-typedef int property(int);
+struct GeneratedValue {
+    void *value;
+    size_t size_of;
+
+    void (*freeValue)(void *);
+    void (*printValue)(struct GeneratedValue*);
+};
+
+typedef int generator(struct GeneratedValue* value);
+typedef int property(struct GeneratedValue* value);
 
 struct TestPPTList {
     struct TestPPTNode *head;
@@ -28,9 +36,10 @@ void run_properties(struct TestPPTList *list);
 void clear_property_list(struct TestPPTList *list);
 void free_property_list(struct TestPPTList *list);
 
-int set_seed(int seed);
-int set_repeat(int repeat);
+void set_seed(unsigned int seed);
+void set_repeat(unsigned int repeat);
 
-int generate_int();
+int generate_int(struct GeneratedValue* value);
+int generate_array_of_int(struct GeneratedValue* value);
 
 #endif

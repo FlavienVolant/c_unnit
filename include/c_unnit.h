@@ -8,9 +8,10 @@
 #define ASSERT_TRUE(boolean)\
 if (!(boolean)) { \
     printf("[ASSERT_TRUE] expected {%s} to be TRUE but was FALSE (%s:%d)\n", \
-           #boolean, __FILE__, __LINE__); \
+        #boolean, __FILE__, __LINE__); \
     return -1; \
 }
+
 
 #define ASSERT_FALSE(boolean)\
 if (boolean) { \
