@@ -201,7 +201,7 @@ void print_array_of_int(struct GeneratedValue* genValue) {
     printf("[ ");
     for(size_t i = 0; i * sizeof(int) < genValue->size_of; i++) {
         printf("%d", array[i]);
-        if(i + 1 < genValue->size_of)
+        if((i + 1) * sizeof(int) < genValue->size_of)
             printf(", ");
     }
     printf(" ]");
